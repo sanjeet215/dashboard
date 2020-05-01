@@ -1,15 +1,20 @@
 export default function() {
   return [
     {
-      title: "Blog Dashboard",
-      to: "/blog-overview",
-      htmlBefore: '<i class="material-icons">edit</i>',
+      title: "Employee",
+      to: "/employee",
+      htmlBefore: '<i class="material-icons">people</i>',
       htmlAfter: ""
     },
     {
       title: "Organization",
       htmlBefore: '<i class="material-icons">table_chart</i>',
       to: "/organization",
+    },
+    {
+      title: "Department",
+      htmlBefore: '<i class="material-icons">table_chart</i>',
+      to: "/department",
     },
     {
       title: "User Profile",
