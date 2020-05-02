@@ -1,98 +1,68 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
-import { Container, Row, Col, Card, CardHeader, CardBody } from "shards-react";
+import React from "react";
+import {
+    Container,
+    Row,
+    Col,
+    Card,
+    CardHeader,
+    Alert
+} from "shards-react";
 
-import PageTitle from "../common/PageTitle";
+import PageTitle from "../../components/common/PageTitle";
+import OrganizationForm from "../../components/formviews/OrganizationForm";
+import AddressForm from "../../components/formviews/AddressForm";
+import AddEmployee from "../../components/formviews/AddEmployee";
+import Employee from "../views/Employee";
+import OrganizationTabs from "../views/OrganizationTabs";
 
-function Organization() {
-  // data state to store the TV Maze API data. Its initial value is an empty array
-  const [data, setData] = useState([]);
+const Organization = () => (
+    <div>
+        <Container fluid className="px-0">
+            {/* <Alert className="mb-0">
+                <i className="fa fa-info mx-2"></i> How you doin'? I'm just a friendly, good-looking notification message and I come in all the colors you can see below. Pretty cool, huh?
+      </Alert> */}
+        </Container>
+        <Container fluid className="main-content-container px-4">
+            <Row noGutters className="page-header py-4">
+                <PageTitle
+                    sm="4"
+                    title="Organization"
+                    subtitle="Overview"
+                    className="text-sm-left"
+                />
+            </Row>
 
-  // Using useEffect to call the API once mounted and set the data
-  useEffect(() => {
-    (async () => {
-      const result = await axios("http://localhost:8080/api/org");
-      setData(result.data.data);
-      console.log(result.data.data);
-    })();
-  }, []);
+            <Row>
+                <Col lg="12" className="mb-4">
+                    <Card small>
+                        {/* <CardHeader className="border-bottom">
+                            <h6 className="m-0">New Organization</h6>
+                        </CardHeader> */}
+                        <OrganizationTabs />
+                    </Card>
 
-  return (
+                    <p>
 
-    <Container fluid className="main-content-container px-4">
-      <Row noGutters className="page-header py-4">
-        <Col lg="6">
-          <PageTitle sm="6" title="Organizations" subtitle="Full List" className="text-sm-left" />
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <Card small className="mb-4">
-            <CardHeader className="border-bottom">
-              <h6 className="m-0">Organization List</h6>
-            </CardHeader>
-            <CardBody className="p-0 pb-3">
-              <table className="table mb-0">
-                <thead className="bg-light">
-                  <tr>
-                    <th scope="col" className="border-0">
-                      #
-                  </th>
-                    <th scope="col" className="border-0">
-                      Org-Id
-                  </th>
-                    <th scope="col" className="border-0">
-                      Organization Name
-                  </th>
-                    <th scope="col" className="border-0">
-                      Contact Name
-                  </th>
-                    <th scope="col" className="border-0">
-                      Phone No
-                  </th>
-                    <th scope="col" className="border-0">
-                      Email Id
-                  </th>
-                    <th scope="col" className="border-0">
-                      Status
-                  </th>
-                  <th scope="col" className="border-0">
-                      
-                  </th>
-                  
-                  </tr>
-                </thead>
-                <tbody>
-
-                  {(data.length > 0) ? data.map((data, index) => {
-                    return (
-                      <tr key={data.orgId}>
-                        <td>{data.orgId}</td>
-                        <td>{data.orgRefName}</td>
-                        <td>{data.orgName}</td>
-                        {/* <td>{data.description}</td> */}
-                        <td>{data.contactName}</td>
-                        <td>{data.contactNumber}</td>
-                        <td>{data.contactEmail}</td>
-                        <td>{data.status.toString()}</td>
-                        <td><a href="/addorganization" className="fa fa-info mx-2"> </a></td>
-                      </tr>
-                    )
-                  }) : <tr><td colSpan="5">Loading...</td></tr>}
-                </tbody>
-              </table>
-            </CardBody>
-          </Card>
-        </Col>
-      </Row>
-
-
-
-
-    </Container>
-
-  );
-}
+                    </p>
+                    {/* <Card small>
+                        <CardHeader className="border-bottom">
+                            <h6 className="m-0">Add Admin for Organization</h6>
+                        </CardHeader>
+                        <AddEmployee />
+                    </Card> */}
+                </Col>
+                <Col lg="0" className="mb-4">
+                    {/* Sliders & Progress Bars */}
+                    {/* <Card small>
+                        <CardHeader className="border-bottom">
+                            <h6 className="m-0">Update Address</h6>
+                        </CardHeader>
+                        <AddressForm />
+                    </Card> */}
+                </Col>
+            </Row>
+        </Container>
+    </div>
+);
 
 export default Organization;
